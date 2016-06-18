@@ -25,7 +25,7 @@ def issorted(seq):
 class TestSort(unittest.TestCase):
     def setUp(self):
 
-        num_lists = 500
+        num_lists = 100
 
         # generate 1000 lists of length 0-9999, with random integers
         self.int_list = list()
@@ -53,12 +53,15 @@ class TestIsSorted(unittest.TestCase):
         empty = []
         good = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         bad = [6, 4, 0, 1, 45, 88, 11, 4, 0]
+        floats = [1.1, 4.4, 5.1, 5.2, 5.3, 29.1, 32.0, 999.999]
         alpha = 'abcdefg'
         alphabad = 'goiodfmqbe'
 
         self.assertTrue(issorted(empty))
         self.assertTrue(issorted(good))
         self.assertFalse(issorted(bad))
+
+        self.assertTrue(issorted(floats))
 
         self.assertTrue(issorted(alpha))
         self.assertFalse(issorted(alphabad))
@@ -93,4 +96,68 @@ class TestSortIntegers(TestSort):
         for case in self.int_list:
             sort.heap_sort(case)
             self.assertNotEqual(self.int_list, case)
+            self.assertTrue(issorted(case))
+
+
+class TestSortFloats(TestSort):
+    def test_bubble_sort(self):
+        for case in self.float_list:
+            sort.bubble_sort(case)
+            self.assertNotEqual(self.float_list, case)
+            self.assertTrue(issorted(case))
+
+    def test_insertion_sort(self):
+        for case in self.float_list:
+            sort.insertion_sort(case)
+            self.assertNotEqual(self.float_list, case)
+            self.assertTrue(issorted(case))
+
+    def test_merge_sort(self):
+        for case in self.float_list:
+            sort.merge_sort(case)
+            self.assertNotEqual(self.float_list, case)
+            self.assertTrue(issorted(case))
+
+    def test_quick_sort(self):
+        for case in self.float_list:
+            sort.quick_sort(case)
+            self.assertNotEqual(self.float_list, case)
+            self.assertTrue(issorted(case))
+
+    def test_heap_sort(self):
+        for case in self.float_list:
+            sort.heap_sort(case)
+            self.assertNotEqual(self.float_list, case)
+            self.assertTrue(issorted(case))
+
+
+class TestSortStrings(TestSort):
+    def test_bubble_sort(self):
+        for case in self.string_list:
+            sort.bubble_sort(case)
+            self.assertNotEqual(self.string_list, case)
+            self.assertTrue(issorted(case))
+
+    def test_insertion_sort(self):
+        for case in self.string_list:
+            sort.insertion_sort(case)
+            self.assertNotEqual(self.string_list, case)
+            self.assertTrue(issorted(case))
+
+    def test_merge_sort(self):
+        for case in self.string_list:
+            sort.merge_sort(case)
+            self.assertNotEqual(self.string_list, case)
+            self.assertTrue(issorted(case))
+
+    def test_quick_sort(self):
+        for case in self.string_list:
+            sort.quick_sort(case)
+            self.assertNotEqual(self.string_list, case)
+            self.assertTrue(issorted(case))
+
+    def test_heap_sort(self):
+        for case in self.string_list:
+            sort.heap_sort(case)
+            self.assertNotEqual(self.string_list, case)
             self.assertTrue(issorted(case))
